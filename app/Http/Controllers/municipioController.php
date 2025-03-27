@@ -19,8 +19,9 @@ class MunicipioController extends Controller
     public function create()
     {
         $departamentos = Departamento::all();
-        return view('municipio.create', compact('departamentos'));
+        return view('municipio.new', compact('departamentos')); // Cambiado de 'create' a 'new'
     }
+    
 
     // Guardar nuevo municipio
     public function store(Request $request)
@@ -64,9 +65,8 @@ class MunicipioController extends Controller
     }
 
     // Eliminar municipio
-    public function destroy($id)
+    public function destroy()
     {
-        Municipio::destroy($id);
-        return redirect()->route('municipios.index')->with('success', 'Municipio eliminado correctamente.');
+       
     }
 }
