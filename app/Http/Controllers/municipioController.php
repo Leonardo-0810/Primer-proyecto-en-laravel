@@ -65,8 +65,9 @@ class MunicipioController extends Controller
     }
 
     // Eliminar municipio
-    public function destroy()
+    public function destroy($id)
     {
-       
+        Municipio::destroy($id);
+        return redirect()->route('municipios.index')->with('success', 'Municipio eliminado correctamente.');
     }
 }
