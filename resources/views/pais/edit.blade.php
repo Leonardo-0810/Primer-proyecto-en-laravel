@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Municipio</title>
+    <title>Editar País</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Editar Municipio</h1>
-        <form method="POST" action="{{ route('municipios.update', $municipio->muni_codi) }}">
+        <h1>Editar País</h1>
+        <form action="{{ route('paises.update', $pais->pais_codi) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="muni_codi" class="form-label">Código</label>
-                <input type="text" class="form-control" id="muni_codi" value="{{ $municipio->muni_codi }}" disabled>
+                <label for="pais_codi" class="form-label">Código</label>
+                <input type="text" class="form-control" id="pais_codi" name="pais_codi" value="{{ $pais->pais_codi }}" disabled>
             </div>
             <div class="mb-3">
-                <label for="muni_nomb" class="form-label">Nombre</label>
-                <input type="text" required class="form-control" id="muni_nomb" name="muni_nomb" value="{{ $municipio->muni_nomb }}">
+                <label for="pais_nomb" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="pais_nomb" name="pais_nomb" value="{{ $pais->pais_nomb }}" required maxlength="52">
             </div>
             <div class="mb-3">
-                <label for="depa_codi" class="form-label">Departamento</label>
-                <select class="form-select" id="depa_codi" name="depa_codi" required>
-                    @foreach ($departamentos as $departamento)
-                        <option value="{{ $departamento->depa_codi }}" {{ $departamento->depa_codi == $municipio->depa_codi ? 'selected' : '' }}>
-                            {{ $departamento->depa_nomb }}
-                        </option>
-                    @endforeach
-                </select>
+                <label for="pais_capi" class="form-label">Capital</label>
+                <input type="number" class="form-control" id="pais_capi" name="pais_capi" value="{{ $pais->pais_capi }}" required>
             </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-                <a href="{{ route('municipios.index') }}" class="btn btn-warning">Cancelar</a>
-            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="{{ route('paises.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>
