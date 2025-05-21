@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comuna;
-use Illuminate\Support\Facades\DB;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ComunaController extends Controller
+class MunicipioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,11 @@ class ComunaController extends Controller
      */
     public function index()
     {
-        $comunas = DB::table('tb_comuna')
-            ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
-            ->select('tb_comuna.*', 'tb_municipio.muni_nomb')
-            ->get();
-        return json_encode(['comunas'=>$comunas]);
+        $municipios = DB::table('tb_municipio')
+                        ->orderBy('muni_nomb')
+                        ->get();
+        return json_encode(['municipios' => $municipios]);
     }
-
 
 
     /**
